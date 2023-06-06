@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example";
+option java_outer_classname = "HelloProto";
+import "google/protobuf/empty.proto";
+
+service StudentService {
+  rpc GetStudent(StudentRequest) returns (StudentResponse);
+  rpc GetAllStudents(google.protobuf.Empty) returns (AllStudentsResponse);
+  rpc AddStudent(Student) returns (AddStudentResponse);
+  rpc GetStudentById(StudentIdRequest) returns (StudentResponse);
+}
+
+message StudentRequest {
+  int32 id =1;
+}
+
+message StudentResponse {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+message Student {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message AllStudentsResponse{
+  repeated Student students = 1;
+}
+message StudentsRequestList {
+  repeated Student students = 1;
+}
+
+message AddStudentResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message StudentIdRequest {
+  int32 id = 1;
+}
+
